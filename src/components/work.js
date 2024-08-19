@@ -1,52 +1,144 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { X } from 'lucide-react';
 
 const Work = () => {
-  const [position, setPosition] = useState(0);
-  
-  const bannerItems = [
-    { id: 1, text: 'DJ BALLANTINE', video: '/assets/work/reel1.mp4' },
-    { id: 2, text: 'MC MCCUMMERY', video: '/assets/work/reel2.mp4' },
-    { id: 3, text: 'FAG JONNY', video: '/assets/work/reel3.mp4' },
-    { id: 4, text: 'CON ON THE MIX', video: '/assets/work/reel4.mp4' },
-  ];
+  const reelItems = useMemo(() => [
+    { id: 1, text: 'AVICII', video: '/assets/work/compressed/reel1.mp4' },
+    { id: 2, text: 'BILL COSBY', video: '/assets/work/compressed/reel2.mp4' },
+    { id: 3, text: 'HARVEY WEINSTEIN', video: '/assets/work/compressed/reel3.mp4' },
+    { id: 4, text: 'BALLANTINE & SONS', video: '/assets/work/compressed/reel4.mp4' },
+  ], []);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setPosition((prevPosition) => (prevPosition - 1) % (bannerItems.length * 350));
-    }, 20);
+  const ReelItem = React.memo(({ item }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const videoRef = React.useRef(null);
 
-    return () => clearInterval(intervalId);
-  }, []);
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsVisible(entry.isIntersecting);
+        },
+        { threshold: 0.1 }
+      );
+
+      if (videoRef.current) {
+        observer.observe(videoRef.current);
+      }
+
+      return () => {
+        if (videoRef.current) {
+          observer.unobserve(videoRef.current);
+        }
+      };
+    }, []);
+
+    useEffect(() => {
+      if (isVisible && videoRef.current) {
+        videoRef.current.play();
+      } else if (!isVisible && videoRef.current) {
+        videoRef.current.pause();
+      }
+    }, [isVisible]);
+
+    return (
+      <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
+        <div className="relative aspect-[9/16] rounded-lg overflow-hidden">
+          <video 
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            loop 
+            muted 
+            playsInline
+          >
+            <source src={item.video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-center p-4">
+            <p className="text-xl font-semibold">{item.text}</p>
+          </div>
+          <div className="absolute inset-0 rounded-lg glow-effect"></div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <div className="w-full bg-black text-white overflow-hidden">
       <h2 className="text-3xl font-bold mb-6 text-center pt-8">Work</h2>
-      <div className="relative h-[480px] whitespace-nowrap mb-8">
-        {bannerItems.concat(bannerItems).map((item, index) => (
-          <div
-            key={`${item.id}-${index}`}
-            className="inline-block w-[270px] h-[480px] relative mx-10"
-            style={{ transform: `translateX(${position}px)` }}
-          >
-            <video 
-              className="w-full h-full object-cover rounded-lg"
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-            >
-              <source src={item.video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white text-center p-4 rounded-lg">
-              <p className="text-xl font-semibold">{item.text}</p>
-            </div>
-            <div className="absolute inset-0 rounded-lg glow-effect"></div>
-          </div>
+      <div className="flex flex-wrap justify-center">
+        {reelItems.map((item) => (
+          <ReelItem key={item.id} item={item} />
         ))}
       </div>
     </div>
   );
 };
 
-export default Work;
+const PricingRow = ({ title, features, videoSrc, isReversed }) => (
+  <div className={`flex flex-col md:flex-row items-stretch mb-12 overflow-hidden rounded-lg shadow-lg ${isReversed ? 'md:flex-row-reverse' : ''}`}>
+    <div className="w-full md:w-1/2 bg-black p-8 relative">
+      <div className="relative z-10 flex h-full">
+        <div className="w-1/2 flex items-center justify-center">
+          <h3 className="text-2xl font-bold text-white text-center">{title}</h3>
+        </div>
+        <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white transform -skew-x-12"></div>
+        <div className="w-1/2 flex items-center justify-center">
+          <ul className="text-gray-300 list-none p-0">
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-center mb-2">
+                <X 
+                  className={`mr-2 ${
+                    index % 3 === 0 ? 'text-red-500' :
+                    index % 3 === 1 ? 'text-green-500' :
+                    'text-blue-500'
+                  } animate-pulse`} 
+                  size={16} 
+                />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div className="w-full md:w-1/2 relative overflow-hidden">
+      <video 
+        src={videoSrc} 
+        className="w-full h-full object-cover"
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+      />
+      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+    </div>
+  </div>
+);
+
+const WorkAndPricingSection = () => (
+  <section className="min-h-screen bg-black flex flex-col items-center justify-center py-16">
+    <Work />
+    <div className="container mx-auto px-4 mt-16">
+      <PricingRow
+        title="SHOWREEL"
+        features={['1 User', '10GB Storage', 'Basic Support']}
+        videoSrc="/assets/reels/demoReel.mp4"
+        isReversed={false}
+      />
+      <PricingRow
+        title="LIVE SET"
+        features={['5 Users', '50GB Storage', 'Priority Support', 'Advanced Features']}
+        videoSrc="/assets/reels/demoReel.mp4"
+        isReversed={true}
+      />
+      <PricingRow
+        title="TOUR"
+        features={['Unlimited Users', '500GB Storage', '24/7 Support', 'Custom Solutions']}
+        videoSrc="/assets/reels/demoReel.mp4"
+        isReversed={false}
+      />
+    </div>
+  </section>
+);
+
+export default WorkAndPricingSection;
