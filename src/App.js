@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { ArrowDown } from 'lucide-react';
 import './App.css';
-import Work from './components/work';
+import Work from './components/Work'
 import Contact from './components/Contact';
+import Footer from './components/Footer'
 
 const App = () => {
   const section1Ref = useRef(null);
@@ -60,6 +61,7 @@ const App = () => {
           <Contact />
         </section>
       </main>
+      <Footer />
     </div>
   );
 };
