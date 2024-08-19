@@ -76,13 +76,13 @@ const Work = () => {
 
 const PricingRow = ({ title, features, videoSrc, isReversed }) => (
   <div className={`flex flex-col md:flex-row items-stretch mb-12 overflow-hidden rounded-lg shadow-lg ${isReversed ? 'md:flex-row-reverse' : ''}`}>
-    <div className="w-full md:w-1/2 bg-black p-8 relative">
-      <div className="relative z-10 flex h-full">
-        <div className="w-1/2 flex items-center justify-center">
+    <div className="w-full md:w-1/2 order-2 md:order-none bg-black p-8 relative">
+      <div className="relative z-10 flex flex-col md:flex-row h-full">
+        <div className="w-full md:w-1/2 flex items-center justify-center mb-4 md:mb-0">
           <h3 className="text-2xl font-bold text-white text-center">{title}</h3>
         </div>
-        <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white transform -skew-x-12"></div>
-        <div className="w-1/2 flex items-center justify-center">
+        <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-0.5 bg-white transform -skew-x-12"></div>
+        <div className="w-full md:w-1/2 flex items-center justify-center">
           <ul className="text-gray-300 list-none p-0">
             {features.map((feature, index) => (
               <li key={index} className="flex items-center mb-2">
@@ -101,7 +101,7 @@ const PricingRow = ({ title, features, videoSrc, isReversed }) => (
         </div>
       </div>
     </div>
-    <div className="w-full md:w-1/2 relative overflow-hidden">
+    <div className="w-full md:w-1/2 order-1 md:order-none relative overflow-hidden">
       <video 
         src={videoSrc} 
         className="w-full h-full object-cover"
@@ -115,10 +115,24 @@ const PricingRow = ({ title, features, videoSrc, isReversed }) => (
   </div>
 );
 
+const SquigglyLine = () => (
+  <svg width="100%" height="20" viewBox="0 0 100 20" preserveAspectRatio="none">
+    <path
+  d="M0 10 Q12.5 20, 25 10 T50 10 T75 10 T100 10"
+  fill="none"
+  stroke="white"
+  strokeWidth="2"
+/>
+  </svg>
+);
+
 const WorkAndPricingSection = () => (
   <section className="min-h-screen bg-black flex flex-col items-center justify-center py-16">
     <Work />
-    <div className="container mx-auto px-4 mt-16">
+    <div className="w-1/2 my-16 mx-auto">
+      <SquigglyLine />
+    </div>
+    <div className="container mx-auto px-4">
       <PricingRow
         title="SHOWREEL"
         features={['1 User', '10GB Storage', 'Basic Support']}
@@ -137,6 +151,9 @@ const WorkAndPricingSection = () => (
         videoSrc="/assets/reels/demoReel.mp4"
         isReversed={false}
       />
+    </div>
+    <div className="w-1/2 my-16 mx-auto">
+      <SquigglyLine />
     </div>
   </section>
 );
