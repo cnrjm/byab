@@ -3,10 +3,10 @@ import { X } from 'lucide-react';
 
 const Work = () => {
   const reelItems = useMemo(() => [
-    { id: 1, text: 'AVICII', video: '/assets/work/compressed/reel1.mp4' },
-    { id: 2, text: 'BILL COSBY', video: '/assets/work/compressed/reel2.mp4' },
-    { id: 3, text: 'HARVEY WEINSTEIN', video: '/assets/work/compressed/reel3.mp4' },
-    { id: 4, text: 'BALLANTINE & SONS', video: '/assets/work/compressed/reel4.mp4' },
+    { id: 1, text: 'DENIS SULTA', video: '/assets/work/compressed/reel1.mp4' },
+    { id: 2, text: 'PEGGY GOU', video: '/assets/work/compressed/reel2.mp4' },
+    { id: 3, text: 'DJ BORING', video: '/assets/work/compressed/reel3.mp4' },
+    { id: 4, text: 'HER', video: '/assets/work/compressed/reel4.mp4' },
   ], []);
 
   const ReelItem = React.memo(({ item }) => {
