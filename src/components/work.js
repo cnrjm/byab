@@ -3,10 +3,10 @@ import { X } from 'lucide-react';
 
 const Work = () => {
   const reelItems = useMemo(() => [
-    { id: 1, text: 'DENIS SULTA', video: '/assets/work/compressed/reel1.mp4' },
-    { id: 2, text: 'PEGGY GOU', video: '/assets/work/compressed/reel2.mp4' },
-    { id: 3, text: 'DJ BORING', video: '/assets/work/compressed/reel3.mp4' },
-    { id: 4, text: 'HER', video: '/assets/work/compressed/reel4.mp4' },
+    { id: 1, text: 'DENIS SULTA', video: `${process.env.PUBLIC_URL}/assets/work/compressed/reel1.mp4` },
+    { id: 2, text: 'PEGGY GOU', video: `${process.env.PUBLIC_URL}/assets/work/compressed/reel2.mp4` },
+    { id: 3, text: 'DJ BORING', video: `${process.env.PUBLIC_URL}/assets/work/compressed/reel3.mp4` },
+    { id: 4, text: 'HER', video: `${process.env.PUBLIC_URL}/assets/work/compressed/reel4.mp4` },
   ], []);
 
   const ReelItem = React.memo(({ item }) => {
@@ -103,7 +103,7 @@ const PricingRow = ({ title, features, videoSrc, isReversed }) => (
     </div>
     <div className="w-full md:w-1/2 order-1 md:order-none relative overflow-hidden">
       <video 
-        src={videoSrc} 
+        src={`${process.env.PUBLIC_URL}${videoSrc}`} 
         className="w-full h-full object-cover"
         autoPlay 
         loop 
@@ -118,11 +118,11 @@ const PricingRow = ({ title, features, videoSrc, isReversed }) => (
 const SquigglyLine = () => (
   <svg width="100%" height="20" viewBox="0 0 100 20" preserveAspectRatio="none">
     <path
-  d="M0 10 Q12.5 20, 25 10 T50 10 T75 10 T100 10"
-  fill="none"
-  stroke="white"
-  strokeWidth="2"
-/>
+      d="M0 10 Q12.5 20, 25 10 T50 10 T75 10 T100 10"
+      fill="none"
+      stroke="white"
+      strokeWidth="2"
+    />
   </svg>
 );
 

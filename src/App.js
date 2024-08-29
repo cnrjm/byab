@@ -39,14 +39,15 @@ const App = () => {
           muted
           playsInline
         >
-          <source src="/assets/reels/demoReel.mp4" type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/assets/reels/demoReel.mp4`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black opacity-80"></div>
       </div>
 
       {/* Header with dynamic background */}
-      <header className={`py-4 px-6 fixed top-0 left-0 right-0 z-20 transition-colors duration-300 ${isScrolled ? 'bg-neutral-950 border-b border-slate-800' : 'bg-transparent'}`}>        <nav className="flex justify-center space-x-4">
+      <header className={`py-4 px-6 fixed top-0 left-0 right-0 z-20 transition-colors duration-300 ${isScrolled ? 'bg-neutral-950 border-b border-slate-800' : 'bg-transparent'}`}>
+        <nav className="flex justify-center space-x-4">
           <button onClick={() => scrollToSection(section1Ref)} className="text-white font-bold hover:text-gray-300 transition-colors">HOME</button>
           <button onClick={() => scrollToSection(section2Ref)} className="text-white font-bold hover:text-gray-300 transition-colors">WORK</button>
           <button onClick={() => scrollToSection(section3Ref)} className="text-white font-bold hover:text-gray-300 transition-colors">CONTACT</button>
