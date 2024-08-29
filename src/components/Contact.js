@@ -23,17 +23,17 @@ const Contact = () => (
       <div className="relative z-10 flex flex-col md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 mb-8 md:mb-0">
           <h2 className="text-4xl font-bold text-white mb-8">Get in Touch</h2>
-          <ContactInfo icon={Mail} text="andrew@byabmedia.com" />
+          <ContactInfo icon={Mail} text="hello@byab.com" />
           <ContactInfo icon={Phone} text="07754 123 456" />
-          <ContactInfo icon={MapPin} text="12 Ballymena Lane, BT41 3DT" />
+          <ContactInfo icon={MapPin} text="12 House Street, BT41 3DT" />
         </div>
         
         <div className="w-full md:w-1/2 flex flex-col items-center">
           <div className="mb-8">
             <div className="flex justify-center space-x-12">
-              <SocialIcon icon={Instagram} href="https://instagram.com/example" />
-              <SocialIcon icon={Youtube} href="https://youtube.com/example" />
-              <SocialIcon icon={Twitter} href="https://twitter.com/example" />
+              <SocialIcon icon={Instagram} href="https://instagram.com/" />
+              <SocialIcon icon={Youtube} href="https://youtube.com/" />
+              <SocialIcon icon={Twitter} href="https://twitter.com/" />
             </div>
           </div>
           
