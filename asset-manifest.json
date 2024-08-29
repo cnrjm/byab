@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/byab/static/css/main.4086e255.css",
+    "main.js": "/byab/static/js/main.1b72f839.js",
+    "static/js/453.046b9bb4.chunk.js": "/byab/static/js/453.046b9bb4.chunk.js",
+    "index.html": "/byab/index.html",
+    "main.4086e255.css.map": "/byab/static/css/main.4086e255.css.map",
+    "main.1b72f839.js.map": "/byab/static/js/main.1b72f839.js.map",
+    "453.046b9bb4.chunk.js.map": "/byab/static/js/453.046b9bb4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4086e255.css",
+    "static/js/main.1b72f839.js"
+  ]
+}
