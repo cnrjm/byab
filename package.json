@@ -1,6 +1,7 @@
 {
   "name": "andrew",
   "version": "0.1.0",
+  "homepage": "https://cnrjm.github.io/byab",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -14,6 +15,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start & chrome --user-data-dir=\"/Users/pridestaff/Library/Application Support/Google/Chrome/Default\" --new-window http://localhost:3000",
     "start:fresh": "npx kill-port 3000 && npm start",
     "build": "react-scripts build",
@@ -40,6 +43,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10"
   }
