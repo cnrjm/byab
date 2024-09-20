@@ -81,7 +81,6 @@ const PricingRow = ({ title, features, videoSrc, isReversed }) => (
         <div className="w-full md:w-1/2 flex items-center justify-center mb-4 md:mb-0">
           <h3 className="text-2xl font-bold text-white text-center">{title}</h3>
         </div>
-        <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-0.5 bg-white transform -skew-x-12"></div>
         <div className="w-full md:w-1/2 flex items-center justify-center">
           <ul className="text-gray-300 list-none p-0">
             {features.map((feature, index) => (
@@ -135,19 +134,19 @@ const WorkAndPricingSection = () => (
     <div className="container mx-auto px-4">
       <PricingRow
         title="SHOWREEL"
-        features={['1 User', '10GB Storage', 'Basic Support']}
+        features={['Cut and edited showreel', '1-2 day turnaround', 'Social Media Ready Formats']}
         videoSrc="/assets/reels/demoReel.mp4"
         isReversed={false}
       />
       <PricingRow
         title="LIVE SET"
-        features={['5 Users', '50GB Storage', 'Priority Support', 'Advanced Features']}
+        features={['Live Set Coverage', 'Before, During & After Footage', 'Short Form Reels For Socials', 'Raw And Edited Footage']}
         videoSrc="/assets/reels/demoReel.mp4"
         isReversed={true}
       />
       <PricingRow
         title="TOUR"
-        features={['Unlimited Users', '500GB Storage', '24/7 Support', 'Custom Solutions']}
+        features={['Full Tour Coverage', 'Before, After & In-Between Shows', 'Short-Form Content Throughout', 'Photography Throughout']}
         videoSrc="/assets/reels/demoReel.mp4"
         isReversed={false}
       />
